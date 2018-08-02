@@ -11,5 +11,6 @@ public interface ReaderDao {
 	void add(Reader reader);
 	void delete(Reader reader);
 	void update(Reader reader);
+	boolean authoriz(String login, String password);
 
 }
