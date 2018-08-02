@@ -1,14 +1,16 @@
 package by.htp.library.dao;
 
-import java.awt.print.Book;
 import java.util.List;
+
+import by.htp.library.entity.Books;
 
 public interface BooksDao {
 
-	Book read(int id);
-	List<Book> list();
-	void add(Book book);
-	void delete(Book book);
-	void update(Book book);
+	Books readBookDetales(int id);
+	List<Books> allBooksDetales();
+	List<Books> list1();
+	void add(Books book);
+	void delete(Books book);
+	void update(Books book);
 
 }

@@ -3,6 +3,7 @@ package by.htp.library.dao.util;
 import java.util.ResourceBundle;
 
 public class MySqlPropertyManager {
+	
 	private static final ResourceBundle rb;	
 	static {
 		rb = ResourceBundle.getBundle("db_config");
