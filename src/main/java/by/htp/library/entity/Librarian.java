@@ -5,13 +5,13 @@ public class Librarian {
 	private String name;
 	private String surname;
 	private String login;
-	private int password;
+	private String password;
 	
 	
 	public Librarian() {	
 	}
 	
-	public Librarian(String name, String surname, String login, int password) {
+	public Librarian(String name, String surname, String login, String password) {
 
 		super();
 		this.name = name;
@@ -44,11 +44,11 @@ public class Librarian {
 		this.login = login;
 	}
 
-	public int getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
@@ -58,7 +58,7 @@ public class Librarian {
 		int result = 1;
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + password;
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
 		return result;
 	}
@@ -82,7 +82,10 @@ public class Librarian {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (password != other.password)
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
 			return false;
 		if (surname == null) {
 			if (other.surname != null)
@@ -96,6 +99,7 @@ public class Librarian {
 	public String toString() {
 		return "Librarian [name=" + name + ", surname=" + surname + ", login=" + login + ", password=" + password + "]";
 	}
-	
+
+
 	
 }
