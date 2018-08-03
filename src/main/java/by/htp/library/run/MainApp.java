@@ -28,5 +28,23 @@ System.out.println("-----------------");
 				System.out.println(books1.get(a));
 			}
 		}
+		
+		Books addingABook = new Books();
+		addingABook.setAuthor("Poul_Klausen");
+		addingABook.setTitle("Programs_with_a_graphical_user_interface");
+		booksDao.add(addingABook);
+		
+		Books delitingABook = new Books();
+		delitingABook.setAuthor("Poul_Klausen");
+		delitingABook.setTitle("Programs_with_a_graphical_user_interface");
+		booksDao.delete(delitingABook);
+		
+		Books bookForUpdate = new Books();
+		bookForUpdate.setAuthor("Poul_Klausen");
+		bookForUpdate.setTitle("Programs_with_a_graphical_user_interface");
+		bookForUpdate.setId(1);
+		booksDao.update(bookForUpdate);
 	}
+	
+	
 }

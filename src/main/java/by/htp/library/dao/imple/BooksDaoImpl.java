@@ -21,9 +21,9 @@ public class BooksDaoImpl implements BooksDao {
 	private static final String SELECT_BOOK_BYID = "SELECT * FROM books WHERE id = ?";
 	private static final String SELECT_ALL_BOOKS_DETALES = "SELECT * FROM books";
 	private static final String SELECT_CATALOG_OF_BOOK = "SELECT books.title FROM books";
-	private static final String INSERT_BOOK = "INSERT INTO book(title, author) VALUES (?, ?)";
-	private static final String DELETE_BOOK = "DELETE FROM book WHERE title = ? AND author = ?";
-	private static final String UPDATE_BOOK = "UPDATE book SET title = ?, author = ? WHERE id_book = ?";
+	private static final String ADD_BOOK = "INSERT INTO books(title, author) VALUES (?, ?)";
+	private static final String DELETE_BOOK = "DELETE FROM books WHERE title = ? AND author = ?";
+	private static final String UPDATE_BOOK = "UPDATE books SET title = ?, author = ? WHERE id = ?";
 	
 	@Override
 	public Books readBookDetales(int id) {
@@ -71,15 +71,10 @@ public class BooksDaoImpl implements BooksDao {
 		try (Connection conn = DriverManager.getConnection(getUrl(), getLogin(), getPass())) {
 			Statement statement = conn.createStatement();
 			ResultSet result = statement.executeQuery(SELECT_CATALOG_OF_BOOK);
-			while (result.next()) {
-				
+			while (result.next()) {			
 				String title = result.getString("title");
-			
-	
 				Books b = new Books();
-				
-				b.setTitle(title);
-				
+				b.setTitle(title);			
 				catalogOfAllBooks.add(b);
 			}
 		} catch (SQLException e) {
@@ -90,14 +85,46 @@ public class BooksDaoImpl implements BooksDao {
 
 	@Override
 	public void add(Books book) {
+		String title = book.getTitle();
+		String author = book.getAuthor();
+		try (Connection conn = DriverManager.getConnection(getUrl(), getLogin(), getPass())) {
+			PreparedStatement ps = conn.prepareStatement(ADD_BOOK);
+			ps.setString(1, title);
+			ps.setString(2, author);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void delete(Books book) {
+		String title = book.getTitle();
+		String author = book.getAuthor();
+		try (Connection conn = DriverManager.getConnection(getUrl(), getLogin(), getPass())) {
+			PreparedStatement ps = conn.prepareStatement(DELETE_BOOK);
+			ps.setString(1, title);
+			ps.setString(2, author);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void update(Books book) {
+		int id = book.getId();
+		String title = book.getTitle();
+		String author = book.getAuthor();
+		try (Connection conn = DriverManager.getConnection(getUrl(), getLogin(), getPass())) {
+			PreparedStatement ps = conn.prepareStatement(UPDATE_BOOK);
+			ps.setString(1, title);
+			ps.setString(2, author);
+			ps.setInt(3, id);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private Books buildBook(ResultSet rs) throws SQLException {
