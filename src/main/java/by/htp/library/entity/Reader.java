@@ -9,13 +9,13 @@ public class Reader {
 	private String surname;
 	private String password;
 	private int readerNumber;
-	private Date phoneNumber;
+	private int phoneNumber;
 	
 	public Reader() {
 		
 	}
 	
-	public Reader(int id, String name, String surname, String password, int readerNumber, Date phoneNumber) {
+	public Reader(int id, String name, String surname, String password, int readerNumber, int phoneNumber) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -65,13 +65,16 @@ public class Reader {
 		this.readerNumber = readerNumber;
 	}
 
-	public Date getPhoneNumber() {
+	public int getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(Date phoneNumber) {
+	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
+
+
 
 	@Override
 	public int hashCode() {
@@ -80,7 +83,7 @@ public class Reader {
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
+		result = prime * result + phoneNumber;
 		result = prime * result + readerNumber;
 		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
 		return result;
@@ -107,10 +110,7 @@ public class Reader {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (phoneNumber == null) {
-			if (other.phoneNumber != null)
-				return false;
-		} else if (!phoneNumber.equals(other.phoneNumber))
+		if (phoneNumber != other.phoneNumber)
 			return false;
 		if (readerNumber != other.readerNumber)
 			return false;
