@@ -25,7 +25,7 @@ public class ReaderDaoImpl implements ReaderDao {
 	private static final String SEE_THE_LIST_OF_ALL_READERS = "SELECT * FROM reader";
 
 	@Override
-	public Reader readReaderById(int id) {
+	public Reader readReader(int id) {
 		Reader reader = null;
 		try (Connection conn = DriverManager.getConnection(getUrl(), getLogin(), getPass())) {
 			PreparedStatement ps = conn.prepareStatement(SEE_INFORMATION_ANOUT_READER);

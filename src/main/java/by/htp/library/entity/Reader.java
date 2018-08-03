@@ -10,11 +10,11 @@ public class Reader {
 	private String password;
 	private int readerNumber;
 	private int phoneNumber;
-	
+
 	public Reader() {
-		
+
 	}
-	
+
 	public Reader(int id, String name, String surname, String password, int readerNumber, int phoneNumber) {
 		super();
 		this.id = id;
@@ -73,9 +73,6 @@ public class Reader {
 		this.phoneNumber = phoneNumber;
 	}
 
-
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -127,6 +124,5 @@ public class Reader {
 		return "Reader [id=" + id + ", name=" + name + ", surname=" + surname + ", password=" + password
 				+ ", readerNumber=" + readerNumber + ", phoneNumber=" + phoneNumber + "]";
 	}
-	
-	
+
 }
